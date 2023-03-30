@@ -113,7 +113,7 @@ Therapy Appointment | {{ $ins_name }}
                                                     <li><a href="{{ route('therapyAppointments.show',$allTherapyAppointmentDateAndTimeList->id) }}" class="dropdown-item"><i class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
                                                     @endif
                                                     @if (Auth::guard('admin')->user()->can('therapyAppointmentUpdate'))
-                                                    <li><a class="dropdown-item edit-item-btn" href="{{ route('therapyAppointments.edit',$allTherapyAppointmentDateAndTimeList->id) }}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li>
+                                                    {{-- <li><a class="dropdown-item edit-item-btn" href="{{ route('therapyAppointments.edit',$allTherapyAppointmentDateAndTimeList->id) }}"><i class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a></li> --}}
                                                     @endif
                                                     @if (Auth::guard('admin')->user()->can('therapyAppointmentDelete'))
                                                     <a class="dropdown-item remove-item-btn" onclick="deleteTag({{ $allTherapyAppointmentDateAndTimeList->id}})" >

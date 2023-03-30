@@ -64,6 +64,7 @@ return new class extends Migration
             $table->text('yoga_chikitsa')->nullable();
             $table->text('paramarsh')->nullable();
             $table->string('history_file')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

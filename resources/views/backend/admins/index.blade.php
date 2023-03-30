@@ -354,7 +354,7 @@ User List | {{ $ins_name }}
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-=========
+
 
 @endsection
 

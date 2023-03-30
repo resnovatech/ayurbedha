@@ -152,7 +152,7 @@ class DoctorWaitingListController extends Controller
                 $patientHistory->history_file =  'public/uploads/'.$filename;
 
             }
-
+            $patientHistory->status = 0;
 
             $patientHistory->save();
 

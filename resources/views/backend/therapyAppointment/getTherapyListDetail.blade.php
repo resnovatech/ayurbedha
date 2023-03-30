@@ -1,6 +1,6 @@
 <div class="row">
 
-    @foreach($patientTherapyList as $allPatientTherapyList)
+    @foreach($patientTherapyList as $key=>$allPatientTherapyList)
     <?php
 
 $therapyId = DB::table('therapy_lists')
@@ -19,12 +19,13 @@ $therapyDetailList = DB::table('therapy_details')
             <div class="card-body">
                 <p class="text-muted">Add Ingredient</p>
 
-                    <table class="table table-bordered" id="dynamicAddRemove1">
+                    <table class="table table-bordered" id="dynamicAddRemove{{ $allPatientTherapyList->id }}">
                         <tr>
                             <th>Name</th>
                             <th>Amount</th>
+                            <th>Action</th>
                         </tr>
-                        @foreach($therapyDetailList as $allTherapyDetailList)
+                        @foreach($therapyDetailList as $mainkey=>$allTherapyDetailList)
 
                         <?php
 
@@ -49,10 +50,20 @@ $therapyDetailListName = DB::table('therapy_ingredients')
                                        class="form-control" required/>
                             </td>
 
+                            <td>
+                                @if($mainkey+1 == 1)
+                                <button type="button" name="add" id="dynamic-ar{{ $allPatientTherapyList->id }}"
+                                        class="btn btn-outline-primary btn-sm">Add New Therapy
+                                </button>
+                                @else
+
+                                @endif
+                            </td>
+
                         </tr>
                         @endforeach
                     </table>
-   
+
 
                 <!--end col-->
             </div>
@@ -80,6 +91,8 @@ $therapyDetailListName = DB::table('therapy_ingredients')
                         <th>Start Time</th>
                         <th>End Time</th>
                     </tr>
+                    @foreach($patientTherapyList as $allPatientTherapyList)
+                    @for ($i = 0; $i < $allPatientTherapyList->amount ; $i++)
                     <tr>
                         <td>
                             <select class="form-select mb-3" required aria-label="Default select example" name="therapist[]">
@@ -88,16 +101,14 @@ $therapyDetailListName = DB::table('therapy_ingredients')
                                 @endforeach
 
                             </select>
+                            {{-- <span>ddd</span> --}}
                         </td>
                         <td>
-                            <select class="form-select mb-3" required aria-label="Default select example" name="therapy[]">
-                                @foreach($patientTherapyList as $allPatientTherapyList)
+
+                            <input type="text" required  name="therapy[]" value="{{ $allPatientTherapyList->name }}"
+                                   class="form-control" readonly/>
 
 
-                                <option value="{{ $allPatientTherapyList->name }}">{{ $allPatientTherapyList->name }}</option>
-                                @endforeach
-
-                            </select>
                         </td>
                         <td>
                             <input type="date" required  name="date[]" value=""
@@ -111,12 +122,10 @@ $therapyDetailListName = DB::table('therapy_ingredients')
                             <input type="time" required name="end_time[]" value=""
                                    class="form-control"/>
                         </td>
-                        <td>
-                            <button type="button" name="add" id="dynamic-ar"
-                                    class="btn btn-outline-primary">Add New Therapy
-                            </button>
-                        </td>
+
                     </tr>
+                    @endfor
+                    @endforeach
                 </table>
 
         </div>
@@ -133,9 +142,12 @@ $therapyDetailListName = DB::table('therapy_ingredients')
 
 <script type="text/javascript">
     var i = 0;
-    $("#dynamic-ar").click(function () {
+    $("[id^=dynamic-ar]").click(function () {
+
+        var main_id = $(this).attr('id');
+             var id_for_pass = main_id.slice(10);
         ++i;
-        $("#dynamicAddRemove").append('<tr><td><select required class="form-select mb-3" aria-label="Default select example" name="therapist[]">@foreach($therapistList as $allTherapistList)<option value="{{ $allTherapistList->id }}">{{ $allTherapistList->name }}</option>@endforeach</select></td><td><select class="form-select mb-3" aria-label="Default select example" required name="therapy[]">@foreach($patientTherapyList as $allPatientTherapyList)<option value="{{ $allPatientTherapyList->name }}">{{ $allPatientTherapyList->name }}</option>@endforeach</select></td><td><input type="date" name="date[]" value="" class="form-control" required/></td><td><input type="time" name="start_time[]" value="" class="form-control" required /></td><td><input type="time" name="end_time[]" value="" required class="form-control"/></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>');
+        $("#dynamicAddRemove"+id_for_pass).append('<tr><td><input type="text"  name="ingridient_name[]"class="form-control" required/>  <input type="hidden" value="{{$therapyId}}" name="therapy_id[]"class="form-control"/></td><td><input type="text" value="" name="ingridient_amount[]"class="form-control" required/></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>');
     });
     $(document).on('click', '.remove-input-field', function () {
         $(this).parents('tr').remove();

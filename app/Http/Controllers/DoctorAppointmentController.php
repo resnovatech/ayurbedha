@@ -30,7 +30,7 @@ class DoctorAppointmentController extends Controller
             abort(403, 'Sorry !! You are Unauthorized to View !');
                }
 
-          $doctorAppointmentList = DoctorAppointment::latest()->get();
+          $doctorAppointmentList = DoctorAppointment::where('appointment_date',date('Y-m-d'))->latest()->get();
 
 
 

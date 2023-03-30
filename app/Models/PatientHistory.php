@@ -14,7 +14,7 @@ class PatientHistory extends Model
         'chikitsa_vrutanta','stri_evam_prasooti_vrutant','poorva_vedana_vrutant','anuvanshika_vritanta','pratyaksh_pramanam',
         'roga_preeksha_srotas_pareeksha','rasavaha_srotas','raktavaha_srotas','mamsavaha_srotas','medovaha_srotas','asthivaha_srotas','majjavaha_srotas','shukravaha_srotas',
         'rogi_pareeksha','nadi','dosha','dushya','shwas','tap_temp','kala','bhara_wt','agni','raktchap_bp','prakruti','mala','vaya','mootra','satmya','kshudha',
-        'satva','nidra','ahara','vyasan','roga_mrag','rago_sthana','sadhyasadhyata','pathya','yoga_chikitsa','paramarsh','history_file'
+        'satva','nidra','ahara','vyasan','roga_mrag','rago_sthana','sadhyasadhyata','pathya','yoga_chikitsa','paramarsh','history_file','status'
     ];
 
     public function admin()

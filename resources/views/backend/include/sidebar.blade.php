@@ -13,7 +13,7 @@
     <!-- LOGO -->
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
-        <a href="index.html" class="logo logo-dark">
+        <a href="{{ route('admin.dashboard') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ asset('/') }}{{ $logo }}" alt="" height="22">
                     </span>
@@ -22,7 +22,7 @@
                     </span>
         </a>
         <!-- Light Logo-->
-        <a href="index.html" class="logo logo-light">
+        <a href="{{ route('admin.dashboard') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('/') }}{{ $logo }}" alt="" height="22">
                     </span>
@@ -154,6 +154,52 @@
 
                 @endif
                 @endif
+                @if ($usr->can('walkByPatientTherapyAdd') || $usr->can('walkByPatientTherapyView') ||  $usr->can('walkByPatientTherapyDelete') ||  $usr->can('walkByPatientTherapyUpdate'))
+                @if (Route::is('walkByPatientTherapy.index') ||  Route::is('walkByPatientTherapy.create') || Route::is('walkByPatientTherapy.edit') || Route::is('walkByPatientTherapy.show'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#therapyAppointment23" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarLanding">
+                        <i class="bx bx-receipt"></i> <span data-key="t-landing">Single Therapy Appointment</span>
+                    </a>
+                    <div class="collapse menu-dropdown show" id="therapyAppointment23">
+                        <ul class="nav nav-sm flex-column">
+                            @if ($usr->can('walkByPatientTherapyAdd'))
+                            <li class="nav-item">
+                                <a href="{{ route('walkByPatientTherapy.create') }}" class="nav-link {{ Route::is('walkByPatientTherapy.create')  ? 'active' : '' }}" data-key="t-one-page">Add New Therapy Appointment</a>
+                            </li>
+                            @endif
+                            @if ($usr->can('walkByPatientTherapyView') ||  $usr->can('walkByPatientTherapyDelete') ||  $usr->can('walkByPatientTherapyUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('walkByPatientTherapy.index') }}" class="nav-link {{ Route::is('walkByPatientTherapy.index') || Route::is('walkByPatientTherapy.edit') || Route::is('walkByPatientTherapy.show') ? 'active' : '' }}" data-key="t-nft-landing"> Therapy Appointment List </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+                @else
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#therapyAppointment23" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarLanding">
+                        <i class="bx bx-receipt"></i> <span data-key="t-landing">Single Therapy Appointment</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="therapyAppointment23">
+                        <ul class="nav nav-sm flex-column">
+                            @if ($usr->can('walkByPatientTherapyAdd'))
+                            <li class="nav-item">
+                                <a href="{{ route('walkByPatientTherapy.create') }}" class="nav-link {{ Route::is('walkByPatientTherapy.create')  ? 'active' : '' }}" data-key="t-one-page">Add New Therapy Appointment</a>
+                            </li>
+                            @endif
+                            @if ($usr->can('walkByPatientTherapyView') ||  $usr->can('walkByPatientTherapyDelete') ||  $usr->can('walkByPatientTherapyUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('walkByPatientTherapy.index') }}" class="nav-link {{ Route::is('walkByPatientTherapy.index') || Route::is('walkByPatientTherapy.edit') || Route::is('walkByPatientTherapy.show') ? 'active' : '' }}" data-key="t-nft-landing"> Therapy Appointment List </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+
+                @endif
+                @endif
                 @if ($usr->can('therapyAppointmentAdd') || $usr->can('therapyAppointmentView') ||  $usr->can('therapyAppointmentDelete') ||  $usr->can('therapyAppointmentUpdate'))
                 @if (Route::is('therapyAppointments.index') ||  Route::is('therapyAppointments.create') || Route::is('therapyAppointments.edit') || Route::is('therapyAppointments.show'))
                 <li class="nav-item">
@@ -200,6 +246,30 @@
 
                 @endif
                 @endif
+
+                @if ($usr->can('BillingAdd') || $usr->can('BillingView') ||  $usr->can('BillingDelete') ||  $usr->can('BillingUpdate') || $usr->can('revisedBillingAdd') || $usr->can('revisedBillingView') ||  $usr->can('revisedBillingDelete') ||  $usr->can('revisedBillingUpdate'))
+                @if (Route::is('billings.index') ||  Route::is('billings.create') || Route::is('billings.edit') || Route::is('billings.show') ||  Route::is('revisedBillings.index') ||  Route::is('revisedBillings.create') || Route::is('revisedBillings.edit') || Route::is('revisedBillings.show'))
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarTables">
+                        <i class="ri-layout-grid-line"></i> <span data-key="t-tables">Billing</span>
+                    </a>
+                    <div class="collapse menu-dropdown show" id="sidebarTables">
+                        <ul class="nav nav-sm flex-column">
+                            @if ($usr->can('BillingAdd') ||  $usr->can('BillingView') ||  $usr->can('BillingDelete') ||  $usr->can('BillingUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('billings.index') }}" class="nav-link {{ Route::is('billings.index') || Route::is('billings.create') || Route::is('billings.edit') || Route::is('billings.show') ? 'active' : '' }}" data-key="t-basic-tables">Billing List</a>
+                            </li>
+                            @endif
+                            @if ($usr->can('revisedBillingAdd') ||  $usr->can('revisedBillingView') ||  $usr->can('revisedBillingDelete') ||  $usr->can('revisedBillingUpdate'))
+                            <li class="nav-item">
+                                <a href="{{ route('revisedBilling.index') }}" class="nav-link {{ Route::is('revisedBillings.index') || Route::is('revisedBillings.index') || Route::is('revisedBillings.edit') || Route::is('revisedBillings.show') ? 'active' : '' }}" data-key="t-grid-js">Revised Bill Quotation</a>
+                            </li>
+                            @endif
+                        </ul>
+                    </div>
+                </li>
+                @else
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
                        aria-expanded="false" aria-controls="sidebarTables">
@@ -207,15 +277,21 @@
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarTables">
                         <ul class="nav nav-sm flex-column">
+                            @if ($usr->can('BillingAdd') ||  $usr->can('BillingView') ||  $usr->can('BillingDelete') ||  $usr->can('BillingUpdate'))
                             <li class="nav-item">
-                                <a href="billing_list.php" class="nav-link" data-key="t-basic-tables">Billing List</a>
+                                <a href="{{ route('billings.index') }}" class="nav-link {{ Route::is('billings.index') || Route::is('billings.create') || Route::is('billings.edit') || Route::is('billings.show') ? 'active' : '' }}" data-key="t-basic-tables">Billing List</a>
                             </li>
+                            @endif
+                            @if ($usr->can('revisedBillingAdd') ||  $usr->can('revisedBillingView') ||  $usr->can('revisedBillingDelete') ||  $usr->can('revisedBillingUpdate'))
                             <li class="nav-item">
-                                <a href="revised_bill_quotation.php" class="nav-link" data-key="t-grid-js">Revised Bill Quotation</a>
+                                <a href="{{ route('revisedBillings.index') }}" class="nav-link {{ Route::is('revisedBillings.index') || Route::is('revisedBillings.index') || Route::is('revisedBillings.edit') || Route::is('revisedBillings.show') ? 'active' : '' }}" data-key="t-grid-js">Revised Bill Quotation</a>
                             </li>
+                            @endif
                         </ul>
                     </div>
                 </li>
+                @endif
+                @endif
 
                 <li class="menu-title"><span data-key="t-menu">Doctor Section</span></li>
 

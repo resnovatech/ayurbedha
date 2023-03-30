@@ -27,6 +27,9 @@ use App\Http\Controllers\DoctorAppointmentController;
 use App\Http\Controllers\TherapyAppointmentController;
 use App\Http\Controllers\DoctorWaitingListController;
 use App\Http\Controllers\PatientPrecriptionController;
+use App\Http\Controllers\WalkByPatientTherapyController;
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\RevisedBillingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +73,21 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('/postPatientPrescriptionInfo', 'postPatientPrescriptionInfo')->name('postPatientPrescriptionInfo');
     });
     //end_waiting_list_controller
+
+
+
+       //revisedBilling_controller
+       Route::resource('revisedBillings', RevisedBillingController::class);
+       //revisedBilling_controller
+
+
+        //billing_controller
+        Route::resource('billings', BillingController::class);
+        //billing_controller
+
+         //walkByPatientTherapyController
+         Route::resource('walkByPatientTherapy', WalkByPatientTherapyController::class);
+         //WalkByPatientTherapyController
 
 
      //PatientPrecription_list_controller

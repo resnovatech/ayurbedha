@@ -68,7 +68,7 @@ DOCTOR PRESCRIPTION | {{ $ins_name }}
                                         <select class="form-select mb-3" name="name[]" aria-label="Default select example" required>
                                             <option>--- Please Select ---</option>
                                             @foreach($therapyLists as $allTherapyLists)
-                                            <option value="{{ $allTherapyLists->id }}">{{ $allTherapyLists->name }}</option>
+                                            <option value="{{ $allTherapyLists->name }}">{{ $allTherapyLists->name }}</option>
                                             @endforeach
 
                                         </select>

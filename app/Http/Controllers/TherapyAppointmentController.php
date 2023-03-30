@@ -37,7 +37,7 @@ class TherapyAppointmentController extends Controller
         if (is_null($this->user) || !$this->user->can('therapyAppointmentView')) {
                    abort(403, 'Sorry !! You are Unauthorized to Add !');
                }
-               $therapyAppointmentDateAndTimeList = TherapyAppointmentDateAndTime::latest()->get();
+               $therapyAppointmentDateAndTimeList = TherapyAppointmentDateAndTime::where('date',date('Y-m-d'))->latest()->get();
        //dd(1);
                return view('backend.therapyAppointment.index',compact('therapyAppointmentDateAndTimeList'));
            }
@@ -48,7 +48,7 @@ class TherapyAppointmentController extends Controller
         if (is_null($this->user) || !$this->user->can('therapyAppointmentAdd')) {
                    abort(403, 'Sorry !! You are Unauthorized to Add !');
                }
-               $patientHistory = PatientHistory::latest()->get();
+               $patientHistory = PatientHistory::where('status',0)->latest()->get();
        //dd(1);
                return view('backend.therapyAppointment.create',compact('patientHistory'));
            }
@@ -151,6 +151,13 @@ class TherapyAppointmentController extends Controller
 
         //dd($request->all());
         $patientId = PatientHistory::where('id',$request->patient_id)->value('patient_id');
+
+
+       $patientHistoryUpdate = PatientHistory::find($request->patient_id);
+       $patientHistoryUpdate->status = 1;
+       $patientHistoryUpdate->save();
+
+
         $therapyAppointment = new TherapyAppointment();
         $therapyAppointment->admin_id =Auth::guard('admin')->user()->id;
         $therapyAppointment->patient_id =$patientId;
