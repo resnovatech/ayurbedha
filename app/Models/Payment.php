@@ -14,10 +14,7 @@ class Payment extends Model
        ];
 
 
-       public function bill()
-    {
-        return $this->belongsTo('App\Models\Bill');
-    }
+      
 
 
 }

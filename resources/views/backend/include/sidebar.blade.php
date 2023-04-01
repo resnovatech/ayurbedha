@@ -263,7 +263,7 @@
                             @endif
                             @if ($usr->can('revisedBillingAdd') ||  $usr->can('revisedBillingView') ||  $usr->can('revisedBillingDelete') ||  $usr->can('revisedBillingUpdate'))
                             <li class="nav-item">
-                                <a href="{{ route('revisedBilling.index') }}" class="nav-link {{ Route::is('revisedBillings.index') || Route::is('revisedBillings.index') || Route::is('revisedBillings.edit') || Route::is('revisedBillings.show') ? 'active' : '' }}" data-key="t-grid-js">Revised Bill Quotation</a>
+                                <a href="{{ route('revisedBillings.index') }}" class="nav-link {{ Route::is('revisedBillings.index') || Route::is('revisedBillings.index') || Route::is('revisedBillings.edit') || Route::is('revisedBillings.show') ? 'active' : '' }}" data-key="t-grid-js">Revised Bill Quotation</a>
                             </li>
                             @endif
                         </ul>

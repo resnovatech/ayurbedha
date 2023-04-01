@@ -83,10 +83,24 @@ Route::group(['prefix' => 'admin'], function () {
 
         //billing_controller
         Route::resource('billings', BillingController::class);
+
+        Route::controller(BillingController::class)->group(function () {
+
+            Route::post('/paymentMoney', 'paymentMoney')->name('paymentMoney');
+            Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
+            Route::get('/moveToReversed/{id}', 'moveToReversed')->name('moveToReversed');
+        });
         //billing_controller
 
          //walkByPatientTherapyController
          Route::resource('walkByPatientTherapy', WalkByPatientTherapyController::class);
+
+         Route::controller(WalkByPatientTherapyController::class)->group(function () {
+
+            Route::get('/walkByPatientTherapyMain', 'walkByPatientTherapyMain')->name('walkByPatientTherapyMain');
+        });
+
+
          //WalkByPatientTherapyController
 
 
