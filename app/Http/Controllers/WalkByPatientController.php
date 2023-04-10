@@ -6,7 +6,12 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\WalkByPatient;
 use App\Models\Patient;
+use App\Models\Bill;
 use App\Models\WalkByPatientService;
+use App\Models\DoctorAppointment;
+use App\Models\TherapyAppointment;
+use App\Models\TherapyAppointmentDateAndTime;
+use App\Models\TherapyAppointmentDetail;
 class WalkByPatientController extends Controller
 {
     public $user;
@@ -140,6 +145,29 @@ return redirect()->route('walkByPatients.index')->with('success','Added successf
 
         $walkByPatientList = WalkByPatient::find($id);
         return view('backend.walkByPatient.edit',compact('walkByPatientList'));
+    }
+    
+     public function show($id)
+    {
+
+    
+
+
+        $walkByPatientList = WalkByPatient::find($id);
+        //dd($walkByPatientListnew);
+        $totalAmount = Bill::where('patient_id',$walkByPatientList->patient_reg_id)->sum('total_amount');
+          $walkByPatientService = WalkByPatientService::where('walk_by_patient_id',$id)->latest()->get();
+          $doctorAppoinmentList = DoctorAppointment::where('patient_id',$walkByPatientList->patient_reg_id)->latest()->get();
+          
+          $therapyAppointmentList = TherapyAppointment::where('patient_id',$walkByPatientList->patient_reg_id)->select('id')->get();
+          
+          $convert_name_title = $therapyAppointmentList->implode("id", " ");
+          $separated_data_title = explode(" ", $convert_name_title);
+                                
+                               $getAppoinmentDetail =  TherapyAppointmentDetail::whereIn('therapy_appointment_id',$separated_data_title)->latest()->get();
+
+        
+        return view('backend.walkByPatient.view',compact('walkByPatientList','walkByPatientService','totalAmount','doctorAppoinmentList','getAppoinmentDetail'));
     }
 
 

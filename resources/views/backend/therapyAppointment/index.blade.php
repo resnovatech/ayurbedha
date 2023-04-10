@@ -60,6 +60,7 @@ Therapy Appointment | {{ $ins_name }}
                                         <th class="sort" data-sort="customer_name">Patient Name</th>
                                         <th class="sort" data-sort="email">Doctor Name</th>
                                         <th class="sort" data-sort="phone">Appointment Data</th>
+                                          <th class="sort" data-sort="phone">Status</th>
                                         <th class="sort" data-sort="action">Action</th>
                                     </tr>
                                     </thead>
@@ -102,7 +103,7 @@ Therapy Appointment | {{ $ins_name }}
                                         </td>
                                         <td class="phone">{{ $allTherapyAppointmentDateAndTimeList->date }}</td>
 
-
+  <td class="phone">Not Received</td>
                                         <td>
                                             <div class="dropdown d-inline-block">
                                                 <button class="btn btn-soft-primary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">

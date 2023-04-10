@@ -68,7 +68,8 @@ Billing Information List | {{ $ins_name }}
       </div>
     </div>
   </div>
-
+  <a href ="{{ route('medicineList',$patientHistory->id) }}" class="btn btn-info">Medicine List</a>
+                            <a href ="{{ route('therapyListFromHistory',$patientHistory->id) }}" class="btn btn-info">Therapy List</a>
                           </div>
 
                     </div>
@@ -178,6 +179,8 @@ Paid
                                         <tr class="table-active">
 
                                             <th scope="col">Product Details</th>
+                                            <th scope="col">Category</th>
+                                           
                                             <th scope="col">Rate</th>
                                             <th scope="col">Quantity</th>
                                             <th scope="col" class="text-end">Amount</th>
@@ -196,6 +199,7 @@ $getTherapyPrice = DB::table('therapy_lists')->where('name',$allPatientTherapyLi
                                                 <span class="fw-medium">{{ $allPatientTherapyList->name }}</span>
 
                                             </td>
+                                             <td>Therapy</td>
                                             <td>৳ {{ $getTherapyPrice }}</td>
                                             <td>
                                   <input type="hidden" name="therapy_id[]" value="{{ $allPatientTherapyList->id }}" />
@@ -223,6 +227,7 @@ $getPatientHerb = DB::table('medicines')->where('name',$allPatientHerbList->name
                                                 <span class="fw-medium">{{ $allPatientHerbList->name }}</span>
 
                                             </td>
+                                             <td>Medicine</td>
                                             <td>৳ {{ $getPatientHerb }}</td>
                                             <td>
                                                 <input type="hidden" name="herb_id[]" value="{{ $allPatientHerbList->id }}" />
@@ -247,6 +252,7 @@ $getPatientMedicalSupplement =DB::table('health_supplements')->where('name',$all
                                                 <span class="fw-medium">{{ $allPatientMedicalSupplement->name }}</span>
 
                                             </td>
+                                             <td>Health Suppliment</td>
                                             <td>৳ {{ $getPatientMedicalSupplement }}</td>
 
 

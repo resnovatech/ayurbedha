@@ -85,7 +85,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::resource('billings', BillingController::class);
 
         Route::controller(BillingController::class)->group(function () {
-
+             Route::get('/medicineList/{id}', 'medicineList')->name('medicineList');
+             Route::get('/therapyListFromHistory/{id}', 'therapyListFromHistory')->name('therapyListFromHistory');
+             
+             
             Route::post('/paymentMoney', 'paymentMoney')->name('paymentMoney');
             Route::get('/printInvoice/{id}', 'printInvoice')->name('printInvoice');
             Route::get('/moveToReversed/{id}', 'moveToReversed')->name('moveToReversed');

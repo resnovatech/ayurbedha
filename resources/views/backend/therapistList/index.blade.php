@@ -213,7 +213,7 @@ Therapist | {{ $ins_name }}
                         </div>
                         <div class="col-12 mb-2">
                             <label for="" class="form-label">Years of experience</label>
-                            <input type="text" class="form-control" name="years_of_experience" id="" readonly>
+                            <input type="text" class="form-control" name="years_of_experience" id="" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary ">Submit</button>

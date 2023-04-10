@@ -61,7 +61,7 @@
                         <ul class="nav nav-sm flex-column">
                             @if ( $usr->can('WalkByPatientAdd')  || $usr->can('WalkByPatientView') ||  $usr->can('WalkByPatientDelete') ||  $usr->can('WalkByPatientUpdate'))
                             <li class="nav-item">
-                                <a href="{{ route('walkByPatients.index') }}" class="nav-link {{ Route::is('walkByPatients.edit') || Route::is('walkByPatients.create') || Route::is('walkByPatients.index')  ? 'active' : '' }}" data-key="t-one-page">Walk By Patient</a>
+                                <a href="{{ route('walkByPatients.index') }}" class="nav-link {{ Route::is('walkByPatients.edit') || Route::is('walkByPatients.create') || Route::is('walkByPatients.index')  ? 'active' : '' }}" data-key="t-one-page">Walking Patient</a>
                             </li>
                             @endif
                             @if ( $usr->can('PatientAdd')  || $usr->can('PatientView') ||  $usr->can('PatientDelete') ||  $usr->can('PatientUpdate'))
@@ -88,7 +88,7 @@
                         <ul class="nav nav-sm flex-column">
                             @if ( $usr->can('WalkByPatientAdd')  || $usr->can('WalkByPatientView') ||  $usr->can('WalkByPatientDelete') ||  $usr->can('WalkByPatientUpdate'))
                             <li class="nav-item">
-                                <a href="{{ route('walkByPatients.index') }}" class="nav-link {{ Route::is('walkByPatients.edit') || Route::is('walkByPatients.create') || Route::is('walkByPatients.index')  ? 'active' : '' }}" data-key="t-one-page">Walk By Patient</a>
+                                <a href="{{ route('walkByPatients.index') }}" class="nav-link {{ Route::is('walkByPatients.edit') || Route::is('walkByPatients.create') || Route::is('walkByPatients.index')  ? 'active' : '' }}" data-key="t-one-page">Walking Patient</a>
                             </li>
                             @endif
                             @if ( $usr->can('PatientAdd')  || $usr->can('PatientView') ||  $usr->can('PatientDelete') ||  $usr->can('PatientUpdate'))

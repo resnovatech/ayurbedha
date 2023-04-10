@@ -8,7 +8,12 @@ use App\Models\PatientAdmit;
 use App\Models\Patient;
 use App\Models\TherapyList;
 use App\Models\Doctor;
-
+use App\Models\Bill;
+use App\Models\WalkByPatientService;
+use App\Models\DoctorAppointment;
+use App\Models\TherapyAppointment;
+use App\Models\TherapyAppointmentDateAndTime;
+use App\Models\TherapyAppointmentDetail;
 class PatientAdmitController extends Controller
 {
     public $user;
@@ -64,6 +69,30 @@ class PatientAdmitController extends Controller
         $doctorList = Doctor::latest()->get();
         $therapyLists = TherapyList::latest()->get();
         return view('backend.patientAdmit.edit',compact('patientList','patientAdmitList','doctorList','therapyLists'));
+    }
+    
+    
+     public function show($id)
+    {
+
+    
+
+
+        $walkByPatientList = PatientAdmit::find($id);
+        //dd($walkByPatientListnew);
+        $totalAmount = Bill::where('patient_id',$walkByPatientList->patient_id)->sum('total_amount');
+       
+          $doctorAppoinmentList = DoctorAppointment::where('patient_id',$walkByPatientList->patient_id)->latest()->get();
+          
+          $therapyAppointmentList = TherapyAppointment::where('patient_id',$walkByPatientList->patient_id)->select('id')->get();
+          
+          $convert_name_title = $therapyAppointmentList->implode("id", " ");
+          $separated_data_title = explode(" ", $convert_name_title);
+                                
+                               $getAppoinmentDetail =  TherapyAppointmentDetail::whereIn('therapy_appointment_id',$separated_data_title)->latest()->get();
+//dd(1);
+        
+        return view('backend.patientAdmit.view',compact('walkByPatientList','totalAmount','doctorAppoinmentList','getAppoinmentDetail'));
     }
 
 
